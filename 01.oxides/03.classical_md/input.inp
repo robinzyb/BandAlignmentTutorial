@@ -1,0 +1,307 @@
+
+&FORCE_EVAL
+  METHOD Fist
+#  STRESS_TENSOR ANALYTICAL
+  &MM
+    &FORCEFIELD
+      &BEND
+        ATOMS H O H
+        K 0.0
+        THETA0 [deg] 109.47
+      &END BEND
+      &BOND
+        ATOMS O H
+        K 0.0
+        R0 [angstrom] 1.0
+      &END BOND
+
+      &CHARGE
+        ATOM O
+        CHARGE -0.8476
+      &END CHARGE
+      &CHARGE
+        ATOM N
+        CHARGE 0
+      &END CHARGE
+#      &CHARGE
+#        ATOM P
+#        CHARGE 0
+#      &END CHARGE
+      &CHARGE
+        ATOM H
+        CHARGE 0.4238
+      &END CHARGE
+#      &CHARGE
+#        ATOM Li
+#        CHARGE 1
+#      &END CHARGE
+#      &CHARGE
+#        ATOM Cl
+#        CHARGE -1
+#      &END CHARGE
+
+      &NONBONDED
+#        &LENNARD-JONES
+#          atoms Li O
+#          EPSILON [eV] 0.010123
+#          SIGMA [angstrom] 2.66
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms Cl O
+#          EPSILON [eV] 0.001927
+#          SIGMA [angstrom] 3.998
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms Li H
+#          EPSILON [eV] 0
+#          SIGMA [angstrom] 2.1595
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms Li N
+#          EPSILON [eV] 0.010123
+#          SIGMA [angstrom] 2.66
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms Cl H
+#          EPSILON [eV] 0
+#          SIGMA [angstrom] 4.83
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms Cl N
+#          EPSILON [eV] 0.001927
+#          SIGMA [angstrom] 3.998
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms Li Cl     #########
+#          EPSILON [eV] 0.002912
+#          SIGMA [angstrom] 3.49
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms Li Li     #########
+#          EPSILON [eV] 0.015292
+#          SIGMA [angstrom] 2.16
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms Cl Cl     ########
+#          EPSILON [eV] 0.0005544
+#          SIGMA [angstrom] 4.83
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms O O
+          EPSILON [eV] 0.0067
+          SIGMA [angstrom] 3.166
+          RCUT [angstrom] 10.0
+        &END LENNARD-JONES
+       &LENNARD-JONES
+          atoms O H
+          EPSILON [eV] 0.0
+          SIGMA [angstrom] 3.6705
+          RCUT [angstrom] 10.0
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms H H
+          EPSILON [eV] 0.0
+          SIGMA [angstrom] 3.305
+          RCUT [angstrom] 10.0
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms N N
+          EPSILON [eV] 0.0067
+          SIGMA [angstrom] 3.166
+          RCUT [angstrom] 10.0
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms N H
+          EPSILON [eV] 0.0
+          SIGMA [angstrom] 3.6705
+          RCUT [angstrom] 10.0
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms N O
+          EPSILON [eV] 0.0067
+          SIGMA [angstrom] 3.6705
+          RCUT [angstrom] 10.0
+        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms P O
+#          EPSILON [eV] 0.0067
+#          SIGMA [angstrom] 3.6705
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms P P
+#          EPSILON [eV] 0.0067
+#          SIGMA [angstrom] 3.6705
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms P N
+#          EPSILON [eV] 0.0067
+#          SIGMA [angstrom] 3.6705
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms P H
+#          EPSILON [eV] 0.0
+#          SIGMA [angstrom] 3.6705
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms Cl P
+#          EPSILON [eV] 0.001927
+#          SIGMA [angstrom] 3.998
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+#        &LENNARD-JONES
+#          atoms Li P
+#          EPSILON [eV] 0.010123
+#          SIGMA [angstrom] 2.66
+#          RCUT [angstrom] 10.0
+#        &END LENNARD-JONES
+
+      &END NONBONDED
+
+     &SPLINE 
+       EMAX_SPLINE 3
+     &END SPLINE
+    &END FORCEFIELD
+    &POISSON
+      &EWALD
+        EWALD_TYPE ewald
+        ALPHA .5
+        GMAX 21
+      &END EWALD
+    &END POISSON
+
+  &END MM
+#  &PRINT
+#    &STRESS_TENSOR
+#    &END
+#  &END
+  &SUBSYS
+#    &KIND Li
+##      ELEMENT Na
+#      MASS 22.99
+#    &END KIND
+#    &KIND Cl
+#      MASS 35.45
+#    &END KIND
+    &KIND H
+      MASS 1.008
+    &END KIND
+    &KIND N
+      MASS 14.0067
+    &END KIND
+#    &KIND P
+#      MASS 15.9994
+#    &END KIND
+    &KIND O
+      MASS 15.9994
+    &END KIND
+    &CELL
+      ABC [angstrom]   13.4011 12.746 42.4011
+      ALPHA_BETA_GAMMA  90 90 90
+    &END CELL
+    &COORD
+      @include ./reorder.xyz
+    &END COORD
+    &TOPOLOGY
+#       COORD_FILE_NAME ./coord.xyz
+#       COORD_FILE_FORMAT XYZ
+       CONN_FILE_NAME ./h2o-dump-1.psf
+       CONNECTIVITY PSF
+#     &GENERATE
+#        CREATE_MOLECULES T
+#      &ISOLATED_ATOMS
+#        LIST 1..16
+#      &END ISOLATED_ATOMS
+#        REORDER T
+#      &END GENERATE
+     &DUMP_PSF
+     &END DUMP_PSF
+    &END TOPOLOGY
+
+  &END SUBSYS
+&END FORCE_EVAL
+
+&GLOBAL
+  PROJECT h2o
+  RUN_TYPE MD
+  PRINT_LEVEL LOW
+&END GLOBAL
+&MOTION
+  &CONSTRAINT
+    SHAKE_TOLERANCE 1.0E-12
+    &G3X3
+      MOLECULE 1
+      ATOMS 1 2 3 
+      DISTANCES  1 1 1.633 
+    &END G3X3
+#    &VIRTUAL_SITE
+#      INTERMOLECULAR FALSE
+#      ATOMS 4 2 1 3
+#      PARAMETERS 0.128012065 0.128012065 
+#      MOLECULE 1
+#    &END VIRTUAL_SITE
+
+    &FIXED_ATOMS
+      COMPONENTS_TO_FIX XYZ
+      
+       &RESTRAINT
+         K  0.1
+       &END
+    &END
+
+  &END CONSTRAINT
+  &MD
+    ENSEMBLE NVT
+    STEPS 200000
+    TIMESTEP 2
+#    TEMP_TOL 30
+    TEMPERATURE 330.0
+    &THERMOSTAT
+      REGION MOLECULE
+      &NOSE
+        LENGTH 3
+        YOSHIDA 3
+        TIMECON 1000
+        MTS 2
+      &END NOSE
+    &END
+  &END MD
+
+  &PRINT
+   &TRAJECTORY
+     &EACH
+       MD 10
+     &END EACH
+   &END TRAJECTORY
+   &VELOCITIES OFF
+   &END VELOCITIES
+   &FORCES OFF
+   &END FORCES
+   &RESTART_HISTORY
+     &EACH
+       MD 50000
+     &END EACH
+   &END RESTART_HISTORY
+   &RESTART
+     BACKUP_COPIES 1
+   &END RESTART
+  &END PRINT
+
+&END MOTION
+
+ &EXT_RESTART
+   RESTART_FILE_NAME ./h2o-1.restart
+##   RESTART_COUNTERS False
+ &END EXT_RESTART
