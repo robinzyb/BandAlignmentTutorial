@@ -1,9 +1,9 @@
 
 &FORCE_EVAL
   METHOD Fist
-#  STRESS_TENSOR ANALYTICAL
   &MM
     &FORCEFIELD
+     ## SPC/E water
       &BEND
         ATOMS H O H
         K 0.0
@@ -23,78 +23,11 @@
         ATOM N
         CHARGE 0
       &END CHARGE
-#      &CHARGE
-#        ATOM P
-#        CHARGE 0
-#      &END CHARGE
       &CHARGE
         ATOM H
         CHARGE 0.4238
       &END CHARGE
-#      &CHARGE
-#        ATOM Li
-#        CHARGE 1
-#      &END CHARGE
-#      &CHARGE
-#        ATOM Cl
-#        CHARGE -1
-#      &END CHARGE
-
       &NONBONDED
-#        &LENNARD-JONES
-#          atoms Li O
-#          EPSILON [eV] 0.010123
-#          SIGMA [angstrom] 2.66
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms Cl O
-#          EPSILON [eV] 0.001927
-#          SIGMA [angstrom] 3.998
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms Li H
-#          EPSILON [eV] 0
-#          SIGMA [angstrom] 2.1595
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms Li N
-#          EPSILON [eV] 0.010123
-#          SIGMA [angstrom] 2.66
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms Cl H
-#          EPSILON [eV] 0
-#          SIGMA [angstrom] 4.83
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms Cl N
-#          EPSILON [eV] 0.001927
-#          SIGMA [angstrom] 3.998
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms Li Cl     #########
-#          EPSILON [eV] 0.002912
-#          SIGMA [angstrom] 3.49
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms Li Li     #########
-#          EPSILON [eV] 0.015292
-#          SIGMA [angstrom] 2.16
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms Cl Cl     ########
-#          EPSILON [eV] 0.0005544
-#          SIGMA [angstrom] 4.83
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
         &LENNARD-JONES
           atoms O O
           EPSILON [eV] 0.0067
@@ -122,54 +55,19 @@
         &LENNARD-JONES
           atoms N H
           EPSILON [eV] 0.0
-          SIGMA [angstrom] 3.6705
+          SIGMA [angstrom] 3.6705 
+          # Wall to repel water
           RCUT [angstrom] 10.0
         &END LENNARD-JONES
         &LENNARD-JONES
           atoms N O
           EPSILON [eV] 0.0067
           SIGMA [angstrom] 3.6705
+          # Wall to repel water
           RCUT [angstrom] 10.0
         &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms P O
-#          EPSILON [eV] 0.0067
-#          SIGMA [angstrom] 3.6705
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms P P
-#          EPSILON [eV] 0.0067
-#          SIGMA [angstrom] 3.6705
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms P N
-#          EPSILON [eV] 0.0067
-#          SIGMA [angstrom] 3.6705
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms P H
-#          EPSILON [eV] 0.0
-#          SIGMA [angstrom] 3.6705
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms Cl P
-#          EPSILON [eV] 0.001927
-#          SIGMA [angstrom] 3.998
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-#        &LENNARD-JONES
-#          atoms Li P
-#          EPSILON [eV] 0.010123
-#          SIGMA [angstrom] 2.66
-#          RCUT [angstrom] 10.0
-#        &END LENNARD-JONES
-
       &END NONBONDED
-
+## SPC/E water
      &SPLINE 
        EMAX_SPLINE 3
      &END SPLINE
@@ -183,27 +81,13 @@
     &END POISSON
 
   &END MM
-#  &PRINT
-#    &STRESS_TENSOR
-#    &END
-#  &END
   &SUBSYS
-#    &KIND Li
-##      ELEMENT Na
-#      MASS 22.99
-#    &END KIND
-#    &KIND Cl
-#      MASS 35.45
-#    &END KIND
     &KIND H
       MASS 1.008
     &END KIND
     &KIND N
       MASS 14.0067
     &END KIND
-#    &KIND P
-#      MASS 15.9994
-#    &END KIND
     &KIND O
       MASS 15.9994
     &END KIND
@@ -215,17 +99,8 @@
       @include ./reorder.xyz
     &END COORD
     &TOPOLOGY
-#       COORD_FILE_NAME ./coord.xyz
-#       COORD_FILE_FORMAT XYZ
        CONN_FILE_NAME ./h2o-dump-1.psf
        CONNECTIVITY PSF
-#     &GENERATE
-#        CREATE_MOLECULES T
-#      &ISOLATED_ATOMS
-#        LIST 1..16
-#      &END ISOLATED_ATOMS
-#        REORDER T
-#      &END GENERATE
      &DUMP_PSF
      &END DUMP_PSF
     &END TOPOLOGY
@@ -241,21 +116,14 @@
 &MOTION
   &CONSTRAINT
     SHAKE_TOLERANCE 1.0E-12
+    # fix a whole water
     &G3X3
       MOLECULE 1
       ATOMS 1 2 3 
       DISTANCES  1 1 1.633 
     &END G3X3
-#    &VIRTUAL_SITE
-#      INTERMOLECULAR FALSE
-#      ATOMS 4 2 1 3
-#      PARAMETERS 0.128012065 0.128012065 
-#      MOLECULE 1
-#    &END VIRTUAL_SITE
-
     &FIXED_ATOMS
       COMPONENTS_TO_FIX XYZ
-      
        &RESTRAINT
          K  0.1
        &END
@@ -303,5 +171,4 @@
 
  &EXT_RESTART
    RESTART_FILE_NAME ./h2o-1.restart
-##   RESTART_COUNTERS False
  &END EXT_RESTART
