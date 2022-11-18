@@ -120,7 +120,7 @@
     &G3X3
       MOLECULE 1
       ATOMS 1 2 3 
-      DISTANCES  1 1 1.633 
+      DISTANCES [angstrom] 1 1 1.633 
     &END G3X3
     &FIXED_ATOMS
       COMPONENTS_TO_FIX XYZ
